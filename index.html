@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bowl Studio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="logo-container">
+            <div class="logo-wrapper">
+                <h1 class="logo-text">BOWL</h1>
+                <div class="gradient-line"></div>
+            </div>
+            <span class="separator">|</span>
+            <p class="tagline">DISEÑO QUE TRASCIENDE,<br>MARCAS QUE PERDURAN.</p>
+        </div>
+    </header>
+
+    <main class="intro-section">
+        <div class="intro-content">
+            <p>En <strong>BOWL</strong>, creemos que el diseño es la herramienta más poderosa para conectar una marca con su esencia. Nuestro enfoque combina estrategia creativa, minimalismo y dirección de arte para desarrollar identidades visuales que no solo se ven bien, sino que trascienden y perduran en el tiempo. Somos socios estratégicos de marcas que buscan dejar una huella auténtica en el mercado.</p>
+        </div>
+    </main>
+
+    <div class="pink-banner">
+        <h2>CASOS DE STUDIO</h2>
+    </div>
+
+    <section class="portfolio-section">
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <img src="coastal1.png" alt="COASTAL burgers">
+                <div class="project-overlay">
+                    <h3>COASTAL <span class="project-icon">🍔</span></h3>
+                    <p>caso 01 / BRANDING DESIGN</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="epoque1.png" alt="EPOQUE">
+                <div class="project-overlay">
+                    <h3>EPOQUE <span class="project-icon">☕️</span></h3>
+                    <p>caso 02 / BRANDING DESIGN</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="herbacee1.png" alt="HERBACÉE">
+                <div class="project-overlay">
+                    <h3>HERBACÉE <span class="project-icon leaf">🌿</span></h3>
+                    <p>caso 03 / BRANDING DESIGN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>¿TENÉS UN PROYECTO EN MENTE?</h2>
+        <p>Hablemos y construyamos algo que perdure.</p>
+        <button id="openContactBtn" class="cta-button">CONTACTANOS</button>
+    </section>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="carousel-slide">
+                <img id="modalImg" src="" alt="Proyecto">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc"></p>
+            </div>
+            <button class="carousel-btn prev-btn">❮</button>
+            <button class="carousel-btn next-btn">❯</button>
+            <span class="close-modal">&times;</span>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal-content">
+            <span class="close-modal contact-close">&times;</span>
+            <h3 class="contact-title">CONTANOS TU PROYECTO</h3>
+            <form class="contact-form" action="https://formspree.io/f/xzedijpz" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select name="tipo" required>
+                    <option value="" disabled selected>Tipo de proyecto</option>
+                    <option value="branding">Branding</option>
+                    <option value="redes">Redes y contenido</option>
+                    <option value="no-seguro">No estoy seguro</option>
+                </select>
+                <textarea name="mensaje" placeholder="Contanos tu proyecto" rows="4" required></textarea>
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+                <button type="submit" class="submit-btn">ENVIAR</button>
+            </form>
+        </div>
+    </div>
+
+    <a id="whatsappButton" class="whatsapp-button" href="https://wa.me/5490000000000" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.52 3.48A11.79 11.79 0 0012 .25C5.73.25.61 5.37.61 11.64c0 2.05.54 4.05 1.56 5.8L.25 23.4l6.3-1.63a11.56 11.56 0 005.17 1.24h.02c6.27 0 11.39-5.12 11.39-11.39 0-3.05-1.19-5.92-3.29-8.14zM12.04 21.82h-.01a10.1 10.1 0 01-5.17-1.39l-.37-.22-3.73.97.99-3.63-.24-.37a10.07 10.07 0 01-1.53-5.27c0-5.6 4.56-10.16 10.17-10.16 2.72 0 5.27 1.06 7.2 2.99a10.12 10.12 0 012.99 7.22c0 5.61-4.56 10.17-10.17 10.17zm5.62-7.73c-.31-.16-1.84-.91-2.12-1.01-.28-.1-.49-.16-.7.16-.21.31-.82 1.01-1 1.22-.18.21-.36.24-.67.08-.31-.16-1.3-.48-2.47-1.52-.91-.81-1.52-1.81-1.7-2.12-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.21-.31.31-.51.1-.2.05-.38-.02-.54-.08-.16-.7-1.68-.96-2.3-.25-.6-.5-.52-.7-.53-.18-.01-.39-.01-.6-.01-.21 0-.55.08-.84.38-.28.29-1.08 1.05-1.08 2.55s1.11 2.96 1.26 3.17c.16.21 2.18 3.34 5.28 4.68.74.32 1.32.51 1.77.65.74.24 1.41.21 1.94.13.59-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.29-.2-.6-.36z"/>
+            </svg>
+        </span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
