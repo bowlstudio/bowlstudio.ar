@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // ---------- MODAL DE PROYECTOS ----------
     const modal = document.getElementById("projectModal");
     const modalImg = document.getElementById("modalImg");
     const modalTitle = document.getElementById("modalTitle");
     const modalDesc = document.getElementById("modalDesc");
-    const closeBtn = document.querySelector(".close-modal");
+    const closeBtn = document.querySelector("#projectModal .close-modal");
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
     const projectCards = document.querySelectorAll(".project-card");
@@ -32,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function showImage() {
         const project = projects[currentProject];
         const image = project.images[currentImage];
-        
+
         modalImg.classList.remove("fade-in");
-        
+
         setTimeout(function() {
             modalImg.src = image;
             modalImg.classList.add("fade-in");
@@ -81,11 +82,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // CONTACT MODAL
+    // ---------- MODAL DE CONTACTO ----------
     const contactModal = document.getElementById("contactModal");
     const openContactBtn = document.getElementById("openContactBtn");
     const contactCloseBtn = document.querySelector(".contact-close");
-    const contactForm = document.getElementById("contactForm");
+    const contactForm = document.querySelector(".contact-form");
 
     function openContactModal() {
         contactModal.classList.add("show");
@@ -104,25 +105,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // ---------- ENVÍO A FORMSPREE ----------
+    // Un solo handler: usa el action del <form> como destino.
     contactForm.addEventListener("submit", function(e) {
         e.preventDefault();
-
-        // El servicio envía los mensajes a la casilla de Bowl Studio.
-        const FORM_ENDPOINT = "/api/contact";
 
         const submitBtn = contactForm.querySelector(".submit-btn");
         const originalText = submitBtn.textContent;
         submitBtn.textContent = "ENVIANDO...";
         submitBtn.disabled = true;
 
-        fetch(FORM_ENDPOINT, {
+        fetch(contactForm.action, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+            body: new FormData(contactForm),
+            headers: { "Accept": "application/json" }
         })
         .then(function(response) {
             if (response.ok) {
-                alert("¡Gracias! Te vamos a contactar pronto.");
+                alert("¡Gracias! Tu mensaje fue enviado, te vamos a contactar pronto.");
                 contactForm.reset();
                 closeContactModal();
             } else {
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .catch(function() {
-            alert("Hubo un problema al enviar. Probá de nuevo o escribinos directo a bowlstudio.ar@gmail.com");
+            alert("Hubo un problema de red. Probá de nuevo o escribinos directo a bowlstudio.ar@gmail.com");
         })
         .finally(function() {
             submitBtn.textContent = originalText;
@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // ---------- BOTÓN DE WHATSAPP ----------
     const whatsappButton = document.getElementById("whatsappButton");
     let lastScrollY = window.scrollY;
     let scrollTimeout = null;
@@ -162,37 +163,4 @@ document.addEventListener("DOMContentLoaded", function() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(showWhatsappButton, 300);
     });
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(showWhatsAppButton, 300);
-  });
-
-// --- INTEGRACIÓN FORMSPREE ---
-  const form = document.querySelector('.contact-form');
-
-  if (form) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          alert('¡Gracias! Tu mensaje fue enviado con éxito.');
-          form.reset();
-          const modal = document.getElementById('contactModal');
-          if (modal) modal.style.display = 'none';
-        } else {
-          alert('Ocurrió un error al enviar el formulario.');
-        }
-      } catch (error) {
-        alert('Hubo un problema de red. Intentá de nuevo.');
-      }
-    });
-  }
+});
